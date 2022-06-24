@@ -19,6 +19,12 @@ from translitua import translit
 # 5. [DONE] Transliterate locations from Cyrillic to Latin
 # 6. Aggregate information
 
+# TODO: Implement a file with the list of the channels to get info from
+# TODO: Proceed with NER only to the sentences where the keywords are
+# TODO: Test lemmatize()
+# TODO: Aggregate information as 5 most mentioned locations in the reports or sth like that.
+#  Maybe can use some graphs for this sake.
+
 async def get_dialogs(client: telethon.client.TelegramClient, filename: str):
     """
     Gets the list of dialogs via Telegram client and writes it into the file
@@ -98,13 +104,11 @@ async def main():
 
 load_dotenv()
 
+PRIAMYI = -1001117030092
 api_id = os.getenv('TELEGRAM_API_ID')
 api_hash = os.getenv('TELEGRAM_API_HASH')
 
-PRIAMYI = -1001117030092
-
 morph = pymorphy2.MorphAnalyzer(lang='uk')
-
 stanza.download('uk')
 nlp = stanza.Pipeline('uk')
 
