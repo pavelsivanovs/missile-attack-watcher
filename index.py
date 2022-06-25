@@ -93,11 +93,7 @@ async def main():
                 for entity in doc.entities:
                     if entity.type == 'LOC':
                         loc_text = translit(morph.parse(entity.text)[0].normalized.word.capitalize())
-
-                        locations.append({
-                            'text': loc_text,
-                            'type': entity.type
-                        })
+                        locations.append(loc_text)
 
                 writer.writerow([message.id, message.message, message.date, locations])
 
