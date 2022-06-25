@@ -49,7 +49,8 @@ def get_tweets(username):
                     enttmp.append(ent.text)
                     # print(ent.text +' - '+ ent.label_)
         # append results to output.csv
-        append_list_as_row('output.csv', ["Twitter", username, a[0], a[1], enttmp])
+        if enttmp:
+            append_list_as_row('output.csv', ["Twitter", username, a[0], a[1], enttmp])
 
 # Driver code
 if __name__ == '__main__':
