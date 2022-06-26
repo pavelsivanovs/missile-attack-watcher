@@ -26,10 +26,21 @@ def get_tweets(username):
     # finds the selected accounts data
     user_id = client.get_user(username=username)
     # finds a selected ammount of tweet text and the corresponding timestamps
-    result = client.get_users_tweets(id=user_id.data.id, tweet_fields="text,created_at", max_results=10)
+    result = client.get_users_tweets(id=user_id.data.id, tweet_fields="text,created_at,id", max_results=100)
     tweettoup = []
     # keywords used for selecting tweets about attacks
-    contextkey=["missile", "Missile"]
+    contextkey=["missile", "Missile", "shelling", "strike", "Shelling", "Strike"]
+    for i in [1,2,3,4,5,6,7,8,9]:
+        batchnr = 0
+        batchid = 0
+        for k in result.data:
+            batchnr=batchnr+1
+            # Appending tweets to the empty array tmp
+            if any(key in k.text for key in contextkey):
+                tweettoup.append((k.text, k.created_at))
+            if batchnr==100:
+                batchid=k.id
+        result = client.get_users_tweets(id=user_id.data.id, tweet_fields="text,created_at,id", max_results=100, until_id=batchid)
     for k in result.data:
         # Appending tweets to the empty array tmp
         if any(key in k.text for key in contextkey):
@@ -37,7 +48,8 @@ def get_tweets(username):
     # Loading the named entity recognizer
     NER = spacy.load('en_core_web_lg')
     # skip list for entities that are known but should not appear in the results
-    ent_skip = ["Russia", "Ukraine", "Belarus"]
+    ent_skip = ["Russia", "Ukraine", "Belarus", "Moscow", "Minsk", "Energoatom", "Ukrainian", "Igla", "Latvia", "US", "Poland", "Belgium", "Netherlands", "Germany", "Italy", "Turkey", "Estonia"
+                , "Romania", "Iohannis", "Denmark", "UK", "The Czech Republic", "U.S.", "Israel", "Sweden", "Czechia", "Egypt"]
     for a in tweettoup:
         doc = NER(a[0])
         enttmp = [];
