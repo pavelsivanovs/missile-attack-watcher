@@ -1,4 +1,4 @@
-**Please donate to Ukrainian army: https://www.comebackalive.in.ua/ 💙💛**
+**Please donate to Ukrainian army: https://savelife.in.ua/en/ 💙💛**
 
 # Missile Attack Watcher
 **Authors**: Pavels Ivanovs (NER implementation for [Ukrainian](telegram.py)) and Kārlis Šteinbergs (NER implementation 
@@ -47,6 +47,6 @@ has struck Kyiv with multiple rockets (as you can see Shevchenkovskyi raion, Kyi
 
 If you have any suggestion on this project, please feel free to write them in the 
 [Issues](https://github.com/pavelsivanovs/missile-attack-watcher/issues) section of this repo. As well, please donate to
-Ukrainian Army: https://www.comebackalive.in.ua/!
+Ukrainian Army: https://savelife.in.ua/en/!
 
 **Слава Україні! :ukraine:**
